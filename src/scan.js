@@ -8,11 +8,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-const core_1 = __importDefault(require("@actions/core"));
+const core_1 = require("@actions/core");
 const exec_1 = require("@actions/exec");
 const scan = () => __awaiter(void 0, void 0, void 0, function* () {
     let output = '';
@@ -26,7 +23,7 @@ const scan = () => __awaiter(void 0, void 0, void 0, function* () {
             error += data.toString();
         }
     };
-    const inputOption = core_1.default.getInput('option');
+    const inputOption = core_1.getInput('option');
     if (inputOption === 'start') {
         yield exec_1.exec('./.github/actions/sonar-dotnet-action/start-sonarqube.ps1', options);
     }
@@ -42,6 +39,6 @@ try {
     //   console.log(`The event payload: ${payload}`);
 }
 catch (error) {
-    core_1.default.setFailed(error.message);
+    core.setFailed(error.message);
 }
 //# sourceMappingURL=scan.js.map

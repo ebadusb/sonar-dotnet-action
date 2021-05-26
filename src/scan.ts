@@ -1,4 +1,4 @@
-import core      from '@actions/core';
+import  { getInput }  from '@actions/core';
 import { exec }  from '@actions/exec';
 
 const scan = async () => {
@@ -15,7 +15,7 @@ const scan = async () => {
         error += data.toString();
       }
     };
-    const inputOption = core.getInput('option');
+    const inputOption = getInput('option');
    
     if (inputOption === 'start'){
         await exec('./.github/actions/sonar-dotnet-action/start-sonarqube.ps1', options);
