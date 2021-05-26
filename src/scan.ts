@@ -1,4 +1,4 @@
-import  { getInput }  from '@actions/core';
+import  { getInput, setFailed }  from '@actions/core';
 import { exec }  from '@actions/exec';
 
 const scan = async () => {
@@ -36,5 +36,5 @@ try {
     //    const payload = JSON.stringify(github.context.payload, undefined, 2)
     //   console.log(`The event payload: ${payload}`);
 } catch (error) {
-  core.setFailed(error.message);
+  setFailed(error.message);
 }

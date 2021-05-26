@@ -1797,7 +1797,7 @@ const scan = () => __awaiter(void 0, void 0, void 0, function* () {
             error += data.toString();
         }
     };
-    const inputOption = _actions_core__WEBPACK_IMPORTED_MODULE_0___default().getInput('option');
+    const inputOption = (0,_actions_core__WEBPACK_IMPORTED_MODULE_0__.getInput)('option');
     if (inputOption === 'start') {
         yield (0,_actions_exec__WEBPACK_IMPORTED_MODULE_1__.exec)('./.github/actions/sonar-dotnet-action/start-sonarqube.ps1', options);
     }
@@ -1813,7 +1813,7 @@ try {
     //   console.log(`The event payload: ${payload}`);
 }
 catch (error) {
-    _actions_core__WEBPACK_IMPORTED_MODULE_0___default().setFailed(error.message);
+    (0,_actions_core__WEBPACK_IMPORTED_MODULE_0__.setFailed)(error.message);
 }
 
 })();

@@ -39,6 +39,6 @@ try {
     //   console.log(`The event payload: ${payload}`);
 }
 catch (error) {
-    core.setFailed(error.message);
+    core_1.setFailed(error.message);
 }
 //# sourceMappingURL=scan.js.map
