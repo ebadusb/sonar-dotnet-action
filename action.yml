@@ -12,4 +12,4 @@ outputs:
     value: "Report"
 runs:
   using: 'node12'
-  main: 'src/scan.js'
+  main: 'dist/index.js'
