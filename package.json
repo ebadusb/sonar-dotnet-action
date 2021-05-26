@@ -1,0 +1,27 @@
+{
+  "name": "sonar-dotnet-action",
+  "version": "1.0.0",
+  "description": "dotnet sonarqube scanner github action",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha -r ts-node/register tests/**/*.test.ts"
+  },
+  "author": "Eric Badiere",
+  "license": "ISC",
+  "dependencies": {
+    "@actions/core": "^1.3.0",
+    "@actions/exec": "^1.0.4",
+    "@actions/github": "^5.0.0"
+  },
+  "devDependencies": {
+    "@types/chai": "^4.2.18",
+    "@types/mocha": "^8.2.2",
+    "@types/node": "^15.6.1",
+    "cd": "^0.3.3",
+    "chai": "^4.3.4",
+    "mocha": "^8.4.0",
+    "nyc": "^15.1.0",
+    "ts-node": "^10.0.0",
+    "typescript": "^4.3.2"
+  }
+}
