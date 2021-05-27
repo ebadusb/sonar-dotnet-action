@@ -12,6 +12,7 @@ $sonarqubeProjectKey = $env:BCT_SONARQUBE_PROJECT_KEY
 $gitrepo = $env:GITHUB_REPOSITORY
 $branchname = $env:BCT_BRANCH
 $src = $env:SRC
+$workspace = $env:GITHUB_WORKSPACE
 
 if($null -ne $sonarqubeToken){
 	# C# sonar analysis
@@ -31,6 +32,7 @@ if($null -ne $sonarqubeToken){
 				   /d:sonar.pullrequest.github.repository=$gitrepo `
 				   /d:sonar.scm.disabled=true `
 				   /d:sonar.scm.provider=git
+				   /d:sonar. projectBaseDir=$workspace
 				   Exit $LASTEXITCODE
 			Pop-Location
 		}    
@@ -47,7 +49,8 @@ if($null -ne $sonarqubeToken){
 				   /d:sonar.cs.opencover.reportsPaths=**/*.coverage.xml `
 				   /d:sonar.scm.provider=git `
 				   /d:sonar.scm.disabled=true `
-				   /d:sonar.branch.name=$branchname     
+				   /d:sonar.branch.name=$branchname    
+				   /d:sonar. projectBaseDir=$workspace 
 				   Exit $LASTEXITCODE           
 			Pop-Location		
 		  }
