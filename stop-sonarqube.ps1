@@ -8,10 +8,10 @@ $workspace = $env:GITHUB_WORKSPACE
 
 if ($isPublishing -or ($eventname -like "pull_request")) {
   Write-Output "Stop sonarqube."
+  Set-Location -Path $workspace
   Push-Location $src 
      if ( $null -ne $sonarqubeToken) {
         Write-Output "Stopping sonarqube scanning."
-        Set-Location -Path $workspace
         dotnet sonarscanner end /d:sonar.login=$sonarqubeToken
         Exit $LASTEXITCODE
      }
