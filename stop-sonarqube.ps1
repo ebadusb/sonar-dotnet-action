@@ -11,7 +11,8 @@ if ($isPublishing -or ($eventname -like "pull_request")) {
   Push-Location $src 
      if ( $null -ne $sonarqubeToken) {
         Write-Output "Stopping sonarqube scanning."
-        dotnet sonarscanner end /d:sonar.login=$sonarqubeToken /d:sonar.projectBaseDir=$workspace
+        Set-Location -Path $workspace
+        dotnet sonarscanner end /d:sonar.login=$sonarqubeToken
         Exit $LASTEXITCODE
      }
   Pop-Location

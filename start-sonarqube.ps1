@@ -16,6 +16,7 @@ $workspace = $env:GITHUB_WORKSPACE
 
 if($null -ne $sonarqubeToken){
 	# C# sonar analysis
+		Set-Location -Path $workspace
 		if ($eventname -like "pull_request") {
 			Push-Location $src
 				# Sonarscanner for static analysis
@@ -32,7 +33,6 @@ if($null -ne $sonarqubeToken){
 				   /d:sonar.pullrequest.github.repository=$gitrepo `
 				   /d:sonar.scm.disabled=true `
 				   /d:sonar.scm.provider=git
-				   /d:sonar. projectBaseDir=$workspace
 				   Exit $LASTEXITCODE
 			Pop-Location
 		}    
@@ -50,7 +50,6 @@ if($null -ne $sonarqubeToken){
 				   /d:sonar.scm.provider=git `
 				   /d:sonar.scm.disabled=true `
 				   /d:sonar.branch.name=$branchname    
-				   /d:sonar. projectBaseDir=$workspace 
 				   Exit $LASTEXITCODE           
 			Pop-Location		
 		  }
