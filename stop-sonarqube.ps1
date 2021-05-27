@@ -15,4 +15,4 @@ if ($isPublishing -or ($eventname -like "pull_request")) {
      }
   Pop-Location
 }
-Exit(1)
+Exit $LASTEXITCODE
