@@ -31,8 +31,13 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const chai_1 = require("chai");
 const core = __importStar(require("@actions/core"));
 const exec = __importStar(require("@actions/exec"));
+const scan_1 = require("../src/scan");
 describe('return codes', function () {
     it('returns an error', () => __awaiter(this, void 0, void 0, function* () {
+        const result = yield runExec('./tests/return-error.ps1');
+        chai_1.expect(result).equal(false);
+    }));
+    it('returns an error, checks options', () => __awaiter(this, void 0, void 0, function* () {
         const result = yield runExec('./tests/return-error.ps1');
         chai_1.expect(result).equal(false);
     }));
@@ -43,12 +48,33 @@ describe('return codes', function () {
     it('runs stop-sonarqube with no previous run. Expect false returned.', () => __awaiter(this, void 0, void 0, function* () {
         core.exportVariable('BCT_SONARQUBE_TOKEN', '123');
         core.exportVariable('BCT_EVENT_NAME', 'pull_request');
-        const result = yield runExec('../stop-sonarqube.ps1');
+        const result = yield runExec('./stop-sonarqube.ps1');
         chai_1.expect(result).equal(false);
     }));
     it('runs stop-sonarqube w/out the token and event vars set. Expect false returned.', () => __awaiter(this, void 0, void 0, function* () {
-        const result = yield runExec('../stop-sonarqube.ps1');
+        const result = yield runExec('./stop-sonarqube.ps1');
         chai_1.expect(result).equal(false);
+    }));
+    it('runs scan function as a GH action would.', () => __awaiter(this, void 0, void 0, function* () {
+        let output = '';
+        let error = '';
+        const options = {};
+        options.listeners = {
+            stdout: (data) => {
+                output += data.toString();
+            },
+            stderr: (data) => {
+                error += data.toString();
+            }
+        };
+        try {
+            scan_1.scan("stop", options);
+            console.log(`Scanned result:`);
+        }
+        catch (error) {
+            console.log(`Error: ${error}`);
+            core.setFailed(error.message);
+        }
     }));
 });
 const runExec = (script) => __awaiter(void 0, void 0, void 0, function* () {
@@ -70,7 +96,7 @@ const runExec = (script) => __awaiter(void 0, void 0, void 0, function* () {
         return true;
     }
     catch (error) {
-        console.log("Caught error");
+        console.log(`Caught error: ${error}`);
         return false;
     }
 });

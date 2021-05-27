@@ -2,10 +2,17 @@ import { expect } from "chai";
 
 import * as core from '@actions/core';
 import * as exec from "@actions/exec";
+import { scan} from "../src/scan";
 
 
 describe('return codes', function() {
+
     it('returns an error', async() => {
+      const result = await runExec('./tests/return-error.ps1');
+      expect(result).equal(false);   
+    }); 
+
+    it('returns an error, checks options', async() => {
       const result = await runExec('./tests/return-error.ps1');
       expect(result).equal(false);   
     }); 
@@ -19,17 +26,45 @@ describe('return codes', function() {
 
       core.exportVariable('BCT_SONARQUBE_TOKEN', '123');
       core.exportVariable('BCT_EVENT_NAME', 'pull_request');
-      const result = await runExec('../stop-sonarqube.ps1');
+      const result = await runExec('./stop-sonarqube.ps1');
       expect(result).equal(false);   
 
     });    
 
     it('runs stop-sonarqube w/out the token and event vars set. Expect false returned.', async() => {
 
-      const result = await runExec('../stop-sonarqube.ps1');
+      const result = await runExec('./stop-sonarqube.ps1');
       expect(result).equal(false);   
 
-    });       
+    });   
+
+    it('runs scan function as a GH action would.', async() => {
+
+      let output = '';
+      let error = '';
+      const options: any = {};
+      options.listeners = {
+        stdout: (data: Buffer) => {
+          output += data.toString();
+        },
+        stderr: (data: Buffer) => {
+          error += data.toString();
+        }
+      };
+      
+      try{
+
+        scan("stop", options);
+        console.log(`Scanned result:`);
+      
+      } catch(error){
+        console.log(`Error: ${error}`);
+        core.setFailed(error.message);
+      }
+           
+
+    });     
+    
 
 });
 
@@ -53,7 +88,7 @@ const runExec = async(script: string): Promise<boolean> => {
     console.log(`Result: ${result}`);
     return true;
   } catch(error){
-    console.log("Caught error");
+    console.log(`Caught error: ${error}`);
     return false;
   }
   

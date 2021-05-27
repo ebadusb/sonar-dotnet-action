@@ -1,40 +1,41 @@
-import  { getInput, setFailed }  from '@actions/core';
-import { exec }  from '@actions/exec';
+import  * as core  from '@actions/core';
+import * as exec   from '@actions/exec';
 
-const scan = async () => {
+let output = '';
+let error = '';
+const options: any = {};
+options.listeners = {
+  stdout: (data: Buffer) => {
+    output += data.toString();
+  },
+  stderr: (data: Buffer) => {
+    error += data.toString();
+  }
+};
 
-    let output = '';
-    let error = '';
+const inputSwitch = core.getInput('option');
 
-    const options: any = {};
-    options.listeners = {
-      stdout: (data: Buffer) => {
-        output += data.toString();
-      },
-      stderr: (data: Buffer) => {
-        error += data.toString();
-      }
-    };
-    const inputOption = getInput('option');
-   
-    if (inputOption === 'start'){
-        await exec('./.github/actions/sonar-dotnet-action/start-sonarqube.ps1', options);
-    } 
+export async function scan (flag: string, execOpts: any): Promise<number> {
+
+  let script = "";
+  if (flag === 'start'){
+    script = './.github/actions/sonar-dotnet-action/start-sonarqube.ps1';
+  } 
     
-    if (inputOption === 'stop'){
-        await exec('./.github/actions/sonar-dotnet-action/stop-sonarqube.ps1', options);
-        // check options throw error
-    }
+  if (flag === 'stop'){
+    script = './.github/actions/sonar-dotnet-action/stop-sonarqube.ps1';
+  }
+
+  const args: any = [];
+ 
+  return await exec.exec(script, args, execOpts);
 
 }
 
-try {
- 
-  scan();
- 
-    // Get the JSON webhook payload for the event that triggered the workflow
-    //    const payload = JSON.stringify(github.context.payload, undefined, 2)
-    //   console.log(`The event payload: ${payload}`);
-} catch (error) {
-  setFailed(error.message);
+try{
+
+  scan(inputSwitch, options);
+
+} catch(error){
+  core.setFailed(error.message);
 }
