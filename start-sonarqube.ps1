@@ -31,6 +31,7 @@ if($null -ne $sonarqubeToken){
 				   /d:sonar.pullrequest.github.repository=$gitrepo `
 				   /d:sonar.scm.disabled=true `
 				   /d:sonar.scm.provider=git
+				   Exit $LASTEXITCODE
 			Pop-Location
 		}    
 	   ElseIf ($isPublishing) {
@@ -46,7 +47,8 @@ if($null -ne $sonarqubeToken){
 				   /d:sonar.cs.opencover.reportsPaths=**/*.coverage.xml `
 				   /d:sonar.scm.provider=git `
 				   /d:sonar.scm.disabled=true `
-				   /d:sonar.branch.name=$branchname                
+				   /d:sonar.branch.name=$branchname     
+				   Exit $LASTEXITCODE           
 			Pop-Location		
 		  }
 	}
