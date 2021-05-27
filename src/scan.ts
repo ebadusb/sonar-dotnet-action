@@ -32,10 +32,7 @@ export async function scan (flag: string, execOpts: any): Promise<number> {
 
 }
 
-try{
 
-  scan(inputSwitch, options);
-
-} catch(error){
-  core.setFailed(error.message);
-}
+scan(inputSwitch, options).catch(e => {
+  core.setFailed(e.message)
+});

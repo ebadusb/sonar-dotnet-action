@@ -57,10 +57,7 @@ function scan(flag, execOpts) {
     });
 }
 exports.scan = scan;
-try {
-    scan(inputSwitch, options);
-}
-catch (error) {
-    core.setFailed(error.message);
-}
+scan(inputSwitch, options).catch(e => {
+    core.setFailed(e.message);
+});
 //# sourceMappingURL=scan.js.map

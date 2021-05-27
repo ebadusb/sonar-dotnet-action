@@ -67,14 +67,11 @@ describe('return codes', function () {
                 error += data.toString();
             }
         };
-        try {
-            scan_1.scan("stop", options);
-            console.log(`Scanned result:`);
-        }
-        catch (error) {
-            console.log(`Error: ${error}`);
-            core.setFailed(error.message);
-        }
+        yield scan_1.scan("stop", options).catch(e => {
+            console.error(e);
+            core.setFailed(e.message);
+            chai_1.expect(e.message).equal("Unable to locate executable file: /home/eric/projects/sonar-dotnet-action/.github/actions/sonar-dotnet-action/stop-sonarqube.ps1. Please verify either the file path exists or the file can be found within a directory specified by the PATH environment variable. Also check the file mode to verify the file is executable.");
+        });
     }));
 });
 const runExec = (script) => __awaiter(void 0, void 0, void 0, function* () {
