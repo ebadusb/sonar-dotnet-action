@@ -47,10 +47,12 @@ function scan(flag, execOpts) {
     return __awaiter(this, void 0, void 0, function* () {
         let script = "";
         if (flag === 'start') {
-            script = './.github/actions/sonar-dotnet-action/start-sonarqube.ps1';
+            // script = './.github/actions/sonar-dotnet-action/start-sonarqube.ps1';
+            script = './ci/start-sonarqube.ps1';
         }
         if (flag === 'stop') {
-            script = './.github/actions/sonar-dotnet-action/stop-sonarqube.ps1';
+            // script = './.github/actions/sonar-dotnet-action/stop-sonarqube.ps1';
+            script = './ci/stop-sonarqube.ps1';
         }
         const args = [];
         return yield exec.exec(script, args, execOpts);
