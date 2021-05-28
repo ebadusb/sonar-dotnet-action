@@ -23,6 +23,7 @@ if($null -ne $sonarqubeToken){
 	Write-Output "In if"
 	# C# sonar analysis
 		Set-Location -Path $workspace
+		Get-Location
 		if ($eventname -like "pull_request") {
 			Push-Location $src
 				# Sonarscanner for static analysis

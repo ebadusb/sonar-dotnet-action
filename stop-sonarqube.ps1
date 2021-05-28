@@ -11,6 +11,7 @@ Set-PSDebug -Trace 2
 if ($isPublishing -or ($eventname -like "pull_request")) {
   Write-Output "Stop sonarqube."
   Set-Location -Path $workspace
+  Get-Location
   Push-Location $src 
      if ( $null -ne $sonarqubeToken) {
         Write-Output "Stopping sonarqube scanning."
