@@ -10,7 +10,7 @@ Set-PSDebug -Trace 2
 
 if ($isPublishing -or ($eventname -like "pull_request")) {
   Write-Output "Stop sonarqube."
-  Set-Location -Path $workspace
+  Set-Location -Path $workspace/ci
   $CurrentDir = $(get-location).Path;
   Write-Output $CurrentDir
   Push-Location $src 
