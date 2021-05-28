@@ -1,5 +1,6 @@
 import  * as core  from '@actions/core';
 import * as exec   from '@actions/exec';
+import * as io     from '@actions/io';
 
 let output = '';
 let error = '';
@@ -20,12 +21,14 @@ export async function scan (flag: string, execOpts: any): Promise<number> {
   let script = "";
   if (flag === 'start'){
     // script = './.github/actions/sonar-dotnet-action/start-sonarqube.ps1';
+    io.cp('./.github/actions/sonar-dotnet-action/start-sonarqube.ps1', './ci/start-sonarqube.ps1');
     script = './ci/start-sonarqube.ps1';
 
   } 
     
   if (flag === 'stop'){
     // script = './.github/actions/sonar-dotnet-action/stop-sonarqube.ps1';
+    io.cp('./.github/actions/sonar-dotnet-action/stop-sonarqube.ps1', './ci/stop-sonarqube.ps1');
     script = './ci/stop-sonarqube.ps1';
   }
 
