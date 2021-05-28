@@ -33,6 +33,8 @@ export async function scan (flag: string, execOpts: any): Promise<number> {
   }
 
   const args: any = [];
+
+  await exec.exec('pwd', args. execOpts);
  
   return await exec.exec(script, args, execOpts);
 

@@ -58,6 +58,7 @@ function scan(flag, execOpts) {
             script = './ci/stop-sonarqube.ps1';
         }
         const args = [];
+        yield exec.exec('pwd', args.execOpts);
         return yield exec.exec(script, args, execOpts);
     });
 }
