@@ -14,7 +14,13 @@ $branchname = $env:BCT_BRANCH
 $src = $env:SRC
 $workspace = $env:GITHUB_WORKSPACE
 
+Set-PSDebug -Trace 2
+
+Write-Output "Hello"
+Write-Output $sonarqubeToken
+
 if($null -ne $sonarqubeToken){
+	Write-Output "In if"
 	# C# sonar analysis
 		Set-Location -Path $workspace
 		if ($eventname -like "pull_request") {

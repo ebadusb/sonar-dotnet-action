@@ -6,6 +6,8 @@ $isPublishing = $([System.Convert]::ToBoolean($env:BCT_IS_PUBLISHING))
 $src = $env:SRC
 $workspace = $env:GITHUB_WORKSPACE
 
+Set-PSDebug -Trace 2
+
 if ($isPublishing -or ($eventname -like "pull_request")) {
   Write-Output "Stop sonarqube."
   Set-Location -Path $workspace
