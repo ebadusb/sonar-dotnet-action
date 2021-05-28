@@ -21,6 +21,7 @@ if($null -ne $sonarqubeToken){
 			Push-Location $src
 				# Sonarscanner for static analysis
 				dotnet tool install --global dotnet-sonarscanner
+				   Get-Location
 				   dotnet sonarscanner begin /k:$sonarqubeProjectKey `
 				   /d:sonar.host.url=$sonarqubeUrl `
 				   /d:sonar.login=$sonarqubeToken `
