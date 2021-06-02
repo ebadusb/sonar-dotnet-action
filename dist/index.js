@@ -1803,18 +1803,19 @@ options.listeners = {
     }
 };
 const inputSwitch = _actions_core__WEBPACK_IMPORTED_MODULE_0__.getInput('option');
+const workingDirectory = _actions_core__WEBPACK_IMPORTED_MODULE_0__.getInput('working-directory');
 function scan(flag, execOpts) {
     return __awaiter(this, void 0, void 0, function* () {
         let script = "";
         if (flag === 'start') {
             // script = './.github/actions/sonar-dotnet-action/start-sonarqube.ps1';
-            yield _actions_io__WEBPACK_IMPORTED_MODULE_2__.cp('./.github/actions/sonar-dotnet-action/start-sonarqube.ps1', './ci/start-sonarqube.ps1');
-            script = './ci/start-sonarqube.ps1';
+            yield _actions_io__WEBPACK_IMPORTED_MODULE_2__.cp('./.github/actions/sonar-dotnet-action/start-sonarqube.ps1', `${workingDirectory}/ci/start-sonarqube.ps1`);
+            script = `${workingDirectory}/ci/start-sonarqube.ps1`;
         }
         if (flag === 'stop') {
             // script = './.github/actions/sonar-dotnet-action/stop-sonarqube.ps1';
-            yield _actions_io__WEBPACK_IMPORTED_MODULE_2__.cp('./.github/actions/sonar-dotnet-action/stop-sonarqube.ps1', './ci/stop-sonarqube.ps1');
-            script = './ci/stop-sonarqube.ps1';
+            yield _actions_io__WEBPACK_IMPORTED_MODULE_2__.cp('./.github/actions/sonar-dotnet-action/stop-sonarqube.ps1', `./ci/stop-sonarqube.ps1`);
+            script = `./ci/stop-sonarqube.ps1`;
         }
         const args = [];
         yield _actions_exec__WEBPACK_IMPORTED_MODULE_1__.exec('pwd', args.execOpts);

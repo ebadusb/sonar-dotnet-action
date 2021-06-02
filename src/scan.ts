@@ -29,8 +29,8 @@ export async function scan (flag: string, execOpts: any): Promise<number> {
     
   if (flag === 'stop'){
     // script = './.github/actions/sonar-dotnet-action/stop-sonarqube.ps1';
-    await io.cp('./.github/actions/sonar-dotnet-action/stop-sonarqube.ps1', `${workingDirectory}/ci/stop-sonarqube.ps1`);
-    script = `${workingDirectory}/ci/stop-sonarqube.ps1`;
+    await io.cp('./.github/actions/sonar-dotnet-action/stop-sonarqube.ps1', `./ci/stop-sonarqube.ps1`);
+    script = `./ci/stop-sonarqube.ps1`;
   }
 
   const args: any = [];

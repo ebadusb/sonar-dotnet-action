@@ -55,8 +55,8 @@ function scan(flag, execOpts) {
         }
         if (flag === 'stop') {
             // script = './.github/actions/sonar-dotnet-action/stop-sonarqube.ps1';
-            yield io.cp('./.github/actions/sonar-dotnet-action/stop-sonarqube.ps1', `${workingDirectory}/ci/stop-sonarqube.ps1`);
-            script = `${workingDirectory}/ci/stop-sonarqube.ps1`;
+            yield io.cp('./.github/actions/sonar-dotnet-action/stop-sonarqube.ps1', `./ci/stop-sonarqube.ps1`);
+            script = `./ci/stop-sonarqube.ps1`;
         }
         const args = [];
         yield exec.exec('pwd', args.execOpts);

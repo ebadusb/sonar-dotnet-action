@@ -41,7 +41,8 @@ if($null -ne $sonarqubeToken){
 				   /d:sonar.pullrequest.base=$targetbranch `
 				   /d:sonar.pullrequest.github.repository=$gitrepo `
 				   /d:sonar.scm.disabled=true `
-				   /d:sonar.scm.provider=git
+				   /d:sonar.scm.provider=git `
+				   /d:sonar.verbose=true
 				   Exit $LASTEXITCODE
 			Pop-Location
 		}    
