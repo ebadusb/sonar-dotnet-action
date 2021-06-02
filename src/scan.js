@@ -31,7 +31,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.scan = void 0;
 const core = __importStar(require("@actions/core"));
 const exec = __importStar(require("@actions/exec"));
-const io = __importStar(require("@actions/io"));
 let output = '';
 let error = '';
 const options = {};
@@ -49,14 +48,14 @@ function scan(flag, execOpts) {
     return __awaiter(this, void 0, void 0, function* () {
         let script = "";
         if (flag === 'start') {
-            // script = './.github/actions/sonar-dotnet-action/start-sonarqube.ps1';
-            yield io.cp('./.github/actions/sonar-dotnet-action/start-sonarqube.ps1', `./ci/start-sonarqube.ps1`);
-            script = `./ci/start-sonarqube.ps1`;
+            script = './.github/actions/sonar-dotnet-action/start-sonarqube.ps1';
+            // await io.cp('./.github/actions/sonar-dotnet-action/start-sonarqube.ps1', `./ci/start-sonarqube.ps1`);
+            // script = `./ci/start-sonarqube.ps1`;
         }
         if (flag === 'stop') {
-            // script = './.github/actions/sonar-dotnet-action/stop-sonarqube.ps1';
-            yield io.cp('./.github/actions/sonar-dotnet-action/stop-sonarqube.ps1', `./ci/stop-sonarqube.ps1`);
-            script = `./ci/stop-sonarqube.ps1`;
+            script = './.github/actions/sonar-dotnet-action/stop-sonarqube.ps1';
+            // await io.cp('./.github/actions/sonar-dotnet-action/stop-sonarqube.ps1', `./ci/stop-sonarqube.ps1`);
+            // script = `./ci/stop-sonarqube.ps1`;
         }
         const args = [];
         yield exec.exec('pwd', args.execOpts);
