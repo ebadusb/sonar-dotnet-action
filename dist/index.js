@@ -1777,8 +1777,6 @@ __nccwpck_require__.r(__webpack_exports__);
 /* harmony import */ var _actions_core__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__nccwpck_require__.n(_actions_core__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _actions_exec__WEBPACK_IMPORTED_MODULE_1__ = __nccwpck_require__(235);
 /* harmony import */ var _actions_exec__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__nccwpck_require__.n(_actions_exec__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _actions_io__WEBPACK_IMPORTED_MODULE_2__ = __nccwpck_require__(913);
-/* harmony import */ var _actions_io__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__nccwpck_require__.n(_actions_io__WEBPACK_IMPORTED_MODULE_2__);
 var __awaiter = (undefined && undefined.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -1788,7 +1786,6 @@ var __awaiter = (undefined && undefined.__awaiter) || function (thisArg, _argume
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-
 
 
 let output = '';
@@ -1808,14 +1805,14 @@ function scan(flag, execOpts) {
     return __awaiter(this, void 0, void 0, function* () {
         let script = "";
         if (flag === 'start') {
-            // script = './.github/actions/sonar-dotnet-action/start-sonarqube.ps1';
-            yield _actions_io__WEBPACK_IMPORTED_MODULE_2__.cp('./.github/actions/sonar-dotnet-action/start-sonarqube.ps1', `${workingDirectory}/ci/start-sonarqube.ps1`);
-            script = `${workingDirectory}/ci/start-sonarqube.ps1`;
+            script = './.github/actions/sonar-dotnet-action/start-sonarqube.ps1';
+            // await io.cp('./.github/actions/sonar-dotnet-action/start-sonarqube.ps1', `${workingDirectory}/ci/start-sonarqube.ps1`);
+            // script = `${workingDirectory}/ci/start-sonarqube.ps1`;
         }
         if (flag === 'stop') {
-            // script = './.github/actions/sonar-dotnet-action/stop-sonarqube.ps1';
-            yield _actions_io__WEBPACK_IMPORTED_MODULE_2__.cp('./.github/actions/sonar-dotnet-action/stop-sonarqube.ps1', `./ci/stop-sonarqube.ps1`);
-            script = `./ci/stop-sonarqube.ps1`;
+            script = './.github/actions/sonar-dotnet-action/stop-sonarqube.ps1';
+            // await io.cp('./.github/actions/sonar-dotnet-action/stop-sonarqube.ps1', `./ci/stop-sonarqube.ps1`);
+            // script = `./ci/stop-sonarqube.ps1`;
         }
         const args = [];
         yield _actions_exec__WEBPACK_IMPORTED_MODULE_1__.exec('pwd', args.execOpts);

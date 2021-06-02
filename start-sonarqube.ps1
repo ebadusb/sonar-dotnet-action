@@ -14,7 +14,7 @@ $branchname = $env:BCT_BRANCH
 $src = $env:SRC
 $workspace = $env:GITHUB_WORKSPACE
 
-Set-PSDebug -Trace 2
+
 
 Write-Output "Hello"
 Write-Output $sonarqubeToken
