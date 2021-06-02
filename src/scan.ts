@@ -23,7 +23,7 @@ export async function scan (flag: string, execOpts: any): Promise<number> {
   if (flag === 'start'){
     // script = './.github/actions/sonar-dotnet-action/start-sonarqube.ps1';
     await io.cp('./.github/actions/sonar-dotnet-action/start-sonarqube.ps1', `./ci/start-sonarqube.ps1`);
-    script = `${workingDirectory}/ci/start-sonarqube.ps1`;
+    script = `./ci/start-sonarqube.ps1`;
 
   } 
     

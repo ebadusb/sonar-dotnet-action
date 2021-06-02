@@ -1810,7 +1810,7 @@ function scan(flag, execOpts) {
         if (flag === 'start') {
             // script = './.github/actions/sonar-dotnet-action/start-sonarqube.ps1';
             yield _actions_io__WEBPACK_IMPORTED_MODULE_2__.cp('./.github/actions/sonar-dotnet-action/start-sonarqube.ps1', `./ci/start-sonarqube.ps1`);
-            script = `${workingDirectory}/ci/start-sonarqube.ps1`;
+            script = `./ci/start-sonarqube.ps1`;
         }
         if (flag === 'stop') {
             // script = './.github/actions/sonar-dotnet-action/stop-sonarqube.ps1';
