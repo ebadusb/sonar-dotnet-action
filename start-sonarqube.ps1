@@ -11,7 +11,6 @@ $sonarqubeToken = $env:BCT_SONARQUBE_TOKEN
 $sonarqubeProjectKey = $env:BCT_SONARQUBE_PROJECT_KEY
 $gitrepo = $env:GITHUB_REPOSITORY
 $branchname = $env:BCT_BRANCH
-$src = $env:SRC
 $workspace = $env:GITHUB_WORKSPACE
 
 
@@ -26,7 +25,7 @@ if($null -ne $sonarqubeToken){
 		$CurrentDir = $(get-location).Path;
 		Write-Output $CurrentDir
 		if ($eventname -like "pull_request") {
-			Push-Location $src
+			Push-Location src
 				# Sonarscanner for static analysis
 				dotnet tool install --global dotnet-sonarscanner
 				   Get-Location
@@ -47,7 +46,7 @@ if($null -ne $sonarqubeToken){
 			Pop-Location
 		}    
 	   ElseIf ($isPublishing) {
-			Push-Location $src
+			Push-Location src
 				# Sonarscanner for static analysis
 				dotnet tool install --global dotnet-sonarscanner           
 	
