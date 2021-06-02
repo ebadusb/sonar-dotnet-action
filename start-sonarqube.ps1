@@ -21,9 +21,9 @@ Write-Output $sonarqubeToken
 if($null -ne $sonarqubeToken){
 	Write-Output "In if"
 	# C# sonar analysis
-		Set-Location -Path $workspace/ci
-		$CurrentDir = $(get-location).Path;
-		Write-Output $CurrentDir
+		# Set-Location -Path $workspace/ci
+		# $CurrentDir = $(get-location).Path;
+		# Write-Output $CurrentDir
 		if ($eventname -like "pull_request") {
 			Push-Location src
 				# Sonarscanner for static analysis
