@@ -11,19 +11,10 @@ $sonarqubeToken = $env:BCT_SONARQUBE_TOKEN
 $sonarqubeProjectKey = $env:BCT_SONARQUBE_PROJECT_KEY
 $gitrepo = $env:GITHUB_REPOSITORY
 $branchname = $env:BCT_BRANCH
-$workspace = $env:GITHUB_WORKSPACE
-
-
-
-Write-Output "Hello"
-Write-Output $sonarqubeToken
 
 if($null -ne $sonarqubeToken){
 	Write-Output "In if"
 	# C# sonar analysis
-		# Set-Location -Path $workspace/ci
-		# $CurrentDir = $(get-location).Path;
-		# Write-Output $CurrentDir
 		if ($eventname -like "pull_request") {
 			Push-Location src
 				# Sonarscanner for static analysis
