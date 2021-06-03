@@ -5,11 +5,6 @@ inputs:
     description: 'start or stop dotnet scan'
     required: true
     default: 'start'
-  # working-directory:  
-  #   description: 'directory to start and stop the scan'
-  #   required: true
-  #   default: './ci'
-  
     
 outputs:
   sonarqube-report:

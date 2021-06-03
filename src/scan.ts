@@ -1,6 +1,5 @@
 import  * as core  from '@actions/core';
 import * as exec   from '@actions/exec';
-import * as io     from '@actions/io';
 
 let output = '';
 let error = '';
@@ -15,22 +14,17 @@ options.listeners = {
 };
 
 const inputSwitch       = core.getInput('option');
-const workingDirectory  = core.getInput('working-directory');
 
 export async function scan (flag: string, execOpts: any): Promise<number> {
 
   let script = "";
   if (flag === 'start'){
     script = './.github/actions/sonar-dotnet-action/start-sonarqube.ps1';
-    // await io.cp('./.github/actions/sonar-dotnet-action/start-sonarqube.ps1', `./ci/start-sonarqube.ps1`);
-    // script = `./ci/start-sonarqube.ps1`;
 
   } 
     
   if (flag === 'stop'){
     script = './.github/actions/sonar-dotnet-action/stop-sonarqube.ps1';
-    // await io.cp('./.github/actions/sonar-dotnet-action/stop-sonarqube.ps1', `./ci/stop-sonarqube.ps1`);
-    // script = `./ci/stop-sonarqube.ps1`;
   }
 
   const args: any = [];
